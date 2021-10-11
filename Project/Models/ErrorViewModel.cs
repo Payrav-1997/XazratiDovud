@@ -1,6 +1,6 @@
 using System;
 
-namespace Dovud.Models
+namespace Project.Models
 {
     public class ErrorViewModel
     {

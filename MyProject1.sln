@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{5700C14F-DA24-44A0-BE24-E9750368BA50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{5700C14F-DA24-44A0-BE24-E9750368BA50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{CDA83362-70FC-4CD1-AF6B-6F86B3392162}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{CDA83362-70FC-4CD1-AF6B-6F86B3392162}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{429366FA-B7E3-4A1D-939B-D620B2C8BE13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{429366FA-B7E3-4A1D-939B-D620B2C8BE13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dovud", "Dovud\Dovud.csproj", "{D6B8556B-32AD-413B-AF9C-C4981340AC57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{80F4FD51-A1FF-44D6-9F19-BDAEB6C9D7C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project", "Project\Project.csproj", "{D3D8DBD1-2D57-4D1E-90F8-68178CE3B855}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +31,14 @@ Global
 		{429366FA-B7E3-4A1D-939B-D620B2C8BE13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{429366FA-B7E3-4A1D-939B-D620B2C8BE13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{429366FA-B7E3-4A1D-939B-D620B2C8BE13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D6B8556B-32AD-413B-AF9C-C4981340AC57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D6B8556B-32AD-413B-AF9C-C4981340AC57}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6B8556B-32AD-413B-AF9C-C4981340AC57}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D6B8556B-32AD-413B-AF9C-C4981340AC57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F4FD51-A1FF-44D6-9F19-BDAEB6C9D7C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F4FD51-A1FF-44D6-9F19-BDAEB6C9D7C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F4FD51-A1FF-44D6-9F19-BDAEB6C9D7C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F4FD51-A1FF-44D6-9F19-BDAEB6C9D7C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3D8DBD1-2D57-4D1E-90F8-68178CE3B855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3D8DBD1-2D57-4D1E-90F8-68178CE3B855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3D8DBD1-2D57-4D1E-90F8-68178CE3B855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3D8DBD1-2D57-4D1E-90F8-68178CE3B855}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

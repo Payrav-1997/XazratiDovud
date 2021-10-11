@@ -1,16 +1,14 @@
-﻿using Dovud.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Project.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dovud.Controllers
+namespace Project.Controllers
 {
-   
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -30,7 +28,6 @@ namespace Dovud.Controllers
             return View();
         }
 
-        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
