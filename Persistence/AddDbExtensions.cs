@@ -20,11 +20,9 @@ namespace Persistence
             var configuration = services.BuildServiceProvider()
                 .GetRequiredService<IConfiguration>();
 
-            var connection = new SqlConnectionStringBuilder(configuration.GetConnectionString("DefaultConnection"))
+            var connection = new Npgsql.NpgsqlConnectionStringBuilder(configuration.GetConnectionString("DefaultConnection"))
             {
-                ConnectTimeout = 600,
-                ConnectRetryCount = 5,
-                ConnectRetryInterval = 2,
+                Timeout = 600,
                 MaxPoolSize = 5000,
                 MinPoolSize = 5
             };
@@ -32,8 +30,9 @@ namespace Persistence
             services.AddDbContext<DataContext>((builder) =>
             {
                 builder.UseLazyLoadingProxies();
-                builder.UseSqlServer(connection.ToString(), sqlServerOptions =>
+                builder.UseNpgsql(connection.ToString(), sqlServerOptions =>
                 {
+                    sqlServerOptions.MigrationsAssembly("Persistence");
                     //sqlServerOptions.CommandTimeout(600);
                     sqlServerOptions.EnableRetryOnFailure();
                 });

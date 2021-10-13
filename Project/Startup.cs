@@ -39,7 +39,8 @@ namespace Project
             //.GetRequiredService<IConfiguration>();
 
             services.Configure<ConnectionOptions>(Configuration.GetSection("Email"));
-            //services.AddDbContext<ApplicationDbContext>(options =>
+           
+            //services.AddDbContext<DataContext>(options =>
             //    options.UseSqlServer(
             //        Configuration.GetConnectionString("DefaultConnection")));
             //services.AddDatabaseDeveloperPageExceptionFilter();

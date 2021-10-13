@@ -19,7 +19,7 @@ namespace Persistence.Data
 				.Build();
 
 			var builder = new DbContextOptionsBuilder<DataContext>()
-				.UseSqlServer(configuration.GetConnectionString("DefaultConnection"))
+				.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
 				.UseLazyLoadingProxies();
 
 			return new DataContext(builder.Options);
