@@ -10,6 +10,6 @@ namespace Domain.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public bool BestRestZone { get; set; }
-        public ICollection<ResrZoneFiles> Files { get; set; }
+        public virtual ICollection<RestZoneFiles> Files { get; set; }
     }
 }

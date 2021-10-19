@@ -16,6 +16,6 @@ namespace Domain.Models
 
 
 
-        public ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

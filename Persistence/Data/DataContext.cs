@@ -11,8 +11,18 @@ namespace Persistence.Data
 {
     public class DataContext: IdentityDbContext<User,Roles,int>
     {
+        public DbSet<Advice> Advices { get; set; }
+        public DbSet<BaseModel> BaseModels { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Complaints> Complaints { get; set; }
+        public DbSet<History> Histories { get; set; }
+        public DbSet<Qadamgoh> Qadamgohs { get; set; }
+        public DbSet<RestZone> RestZones { get; set; }
+        public DbSet<RestZoneFiles> RestZoneFiles { get; set; }
+        public DbSet<Workshop> Workshops { get; set; }
         public DataContext(DbContextOptions<DataContext>options) : base(options) 
         {
+
         }
 
         protected DataContext()

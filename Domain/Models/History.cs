@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Project.Models
+namespace Domain.Models
 {
     public class History : BaseModel
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public IFormFile HisFile { get; set; }
+        public string HisFile { get; set; }
     }
 }
