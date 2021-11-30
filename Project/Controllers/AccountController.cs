@@ -1,27 +1,31 @@
 ﻿using Castle.Core.Logging;
 using Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Account;
 using Services.Account.Models;
 using Services.Account.Repository;
+using Services.Mail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Project.Controllers
+namespace Project.Controllers   
 {
-    public class Account : Controller
+    public class AccountController : Controller
     {
         private readonly ILogger _logger;
         private readonly UsersRepository _userRepository;
         private readonly UserService _userService;
+        private readonly EmailService _emailService;
 
-        public Account(ILogger logger,UsersRepository userRepository,UserService userService)
+        public AccountController(ILogger logger,UsersRepository userRepository,UserService userService,EmailService emailService)
         {
             this._logger = logger;
             _userRepository = userRepository;
             this._userService = userService;
+            this._emailService = emailService;
         }
 
         [HttpGet]
@@ -53,8 +57,16 @@ namespace Project.Controllers
                 return View(ex.Message);
             }
         }
-
+       
+    //    [AllowAnonymous]
         [HttpGet]
+        public IActionResult Login()
+        {
+            return View(new LoginViewModel() { Email = "Admin-1@mail.ru", Password = "Admin-123" });
+        }
+
+
+        [HttpPost]
         public async Task<IActionResult>Login(LoginViewModel model)
         {
             var response = await _userService.SignIn(model);
@@ -67,14 +79,15 @@ namespace Project.Controllers
         }
 
 
-        //[HttpGet]
-        //public async Task<IActionResult>ForgotPassword(string email)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return View();
-        //    }
-        //    await _e
-        //}
+        [HttpGet]
+        public async Task<IActionResult> ForgotPassword(string email)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            await _emailService.Send(email, "Восттановление пароля", "");
+            return View("Index", "ForgotPasswordConfirm");
+        }
     }
 }

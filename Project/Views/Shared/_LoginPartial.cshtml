@@ -2,25 +2,56 @@
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-        <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
-}
-</ul>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="~/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="~/admin/assets/css/authentication/form-1.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/forms/switches.css">
+</head>
+<body class=" login" style="overflow-x: hidden">
+
+
+    <div class="row">
+        <div class="col-md-12 offset-md-12">
+            <div class="card login-logout-tab">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" style="display: flex; justify-content: flex-end;">
+                        <li class="nav-link">
+                            <a class="nav-link" asp-controller="Account" asp-action="Login">Вход</a>
+                        </li>
+                        <li class="nav-link">
+                            <a class="nav-link" asp-controller="Account" asp-action="Register">Регистрация</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-content">
+                    @RenderBody();
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="~/admin/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="~/admin/bootstrap/js/popper.min.js"></script>
+    <script src="~/admin/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="~/admin/assets/js/authentication/form-1.js"></script>
+
+</body>
+</html>
