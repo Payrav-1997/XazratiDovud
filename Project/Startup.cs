@@ -127,7 +127,7 @@ namespace Project
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                 endpoints.MapAreaControllerRoute("AdminArea","admin", "{area:exists}/{controller=Main}/{action=GetMain}/{id?}");
             });
         }
     }

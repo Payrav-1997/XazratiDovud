@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 
 
@@ -51,7 +51,6 @@
     <script src="~/admin/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- END GLOBAL MANDATORY SCRIPTS -->
-    <script src="~/admin/assets/js/authentication/form-1.js"></script>
-
+<script src="~/admin/assets/js/authentication/form-1.js"></script>
 </body>
 </html>

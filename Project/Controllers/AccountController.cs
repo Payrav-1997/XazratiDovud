@@ -15,14 +15,14 @@ namespace Project.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ILogger _logger;
+      //  private readonly ILogger _logger;
         private readonly UsersRepository _userRepository;
         private readonly UserService _userService;
         private readonly EmailService _emailService;
 
-        public AccountController(ILogger logger,UsersRepository userRepository,UserService userService,EmailService emailService)
+        public AccountController(UsersRepository userRepository,UserService userService,EmailService emailService)
         {
-            this._logger = logger;
+           // this._logger = logger;
             _userRepository = userRepository;
             this._userService = userService;
             this._emailService = emailService;
@@ -46,8 +46,8 @@ namespace Project.Controllers
                 var user = await _userRepository.Create(
                     new User
                     {
-                        UserName = model.Eamil,
-                        Email = model.Eamil
+                        UserName = model.Email,
+                        Email = model.Email
                     }, model.Password);
                 return RedirectToAction("Login");
             }
@@ -57,12 +57,12 @@ namespace Project.Controllers
                 return View(ex.Message);
             }
         }
-       
-    //    [AllowAnonymous]
+          [AllowAnonymous]
         [HttpGet]
         public IActionResult Login()
         {
-            return View(new LoginViewModel() { Email = "Admin-1@mail.ru", Password = "Admin-123" });
+            return View();
+            // new LoginViewModel() { Email = "Admin-1@mail.ru", Password = "Admin-123" }
         }
 
 
