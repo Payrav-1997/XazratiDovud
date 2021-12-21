@@ -20,8 +20,15 @@ namespace Services.Mapping
                 .ForMember(x => x.Title, option => option.MapFrom(x => x.Title));
             
             this.CreateMap<Domain.Models.History , GetHistoryViewModel>()
+                .ForMember(x => x.Id, option => option.MapFrom(x => x.Id))
                 .ForMember(x => x.Description, option => option.MapFrom(x => x.Description))
                 .ForMember(x => x.Title, option => option.MapFrom(x => x.Title));
+
+            this.CreateMap<UpdateHistoryViewModel,Domain.Models.History>()
+                .ForMember(x => x.Description, option => option.MapFrom(x => x.Description))
+                .ForMember(x => x.Id, option => option.MapFrom(x=>x.Id))
+                .ForMember(x => x.UpdateDate, option => option.Ignore())
+                .ForMember(x => x.Title, option => option.MapFrom(x => x.Title)).ReverseMap();
 
         }
     }

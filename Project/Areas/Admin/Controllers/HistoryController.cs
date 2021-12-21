@@ -20,17 +20,37 @@ namespace Project.Areas.Admin.Controllers
         public async Task<IActionResult> CreateHistory(HistoryViewModel model)
         {
             await _service.CreateHistory(model);
-            return Redirect("admin/History/GetHistory");
+            return Redirect("History/GetHistory");
         }
         [HttpGet]
         public async Task<IActionResult> CreateHistory()
         {
             return View();
         }
+        
         [HttpGet]
         public async Task<IActionResult> GetHistory()
         {
             return View(await _service.GetHistory());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UpdateHistory(int id)
+        {
+            var model = new UpdateHistoryViewModel();
+            if (id != 0)
+            {
+                model = await _service.GetPartnerById(id);
+                return View(model);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateHistory(UpdateHistoryViewModel model)
+        {
+            await _service.UpdateHistory(model);
+            return Redirect("/admin/History/GetHistory");
         }
     }
 }

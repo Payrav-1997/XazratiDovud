@@ -1,0 +1,23 @@
+﻿@model Services.Hostory.Models.UpdateHistoryViewModel
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<head>
+    <title>Изменение</title>
+</head>
+<body>
+<h3 class="ml-3">Изменение Истории</h3>
+<form class="form" enctype="multipart/form-data" href="/Admin/History/UpdateHistory" method="post">
+    <div class="form-group mt-3 ml-3">
+        <label >Заголовок</label>
+        <input type="text" class="form-control" name="title" asp-for="Title">
+    </div>
+    <div class="form-group ml-3">
+        <label >Описание</label>
+        <input type="text" class="form-control" name="description" asp-for="Description">
+    </div>
+    <input type="submit" name="time" class="btn btn-primary ml-3">
+</form>
+</body>

@@ -32,5 +32,19 @@ namespace Services.Hostory
             return model;
         }
 
+        public async Task UpdateHistory(UpdateHistoryViewModel history)
+        {
+            var model = await _repository.Get(x => x.Id == history.Id);
+            model = _mapper.Map<Domain.Models.History>(history);
+            await _repository.UpdateHistory(model);
+        }
+
+        public async Task<UpdateHistoryViewModel> GetPartnerById(int id)
+        {
+            
+                var model =  _mapper.Map<UpdateHistoryViewModel>(await _repository.Get(x => x.Id.Equals(id)));
+                return model;
+
+        }
     }
 }
