@@ -47,6 +47,11 @@ namespace Project
 
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddDbContext<DataContext>(x =>
+            {
+                x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")).UseLazyLoadingProxies();
+            });
+            
             services.AddHttpContextAccessor();
             services.AddSingleton<IConfiguration>(this.Configuration);
             services.AddControllersWithViews();
@@ -60,6 +65,10 @@ namespace Project
                 options.ValueCountLimit = int.MaxValue; // 200 items max
                 options.ValueLengthLimit = 1024 * 1024 * 100; // 100MB max len form data
             });
+            
+            services.AddIdentity<User, Roles>()
+                .AddEntityFrameworkStores<DataContext>()
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(o =>
             {

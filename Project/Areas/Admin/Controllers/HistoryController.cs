@@ -10,20 +10,27 @@ namespace Project.Areas.Admin.Controllers
     {
         private readonly IHistoryService _service;
 
-     
+        public  HistoryController(IHistoryService service)
+        {
+            _service = service;
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateHistory(HistoryViewModel model)
         {
-            
             await _service.CreateHistory(model);
-            return Redirect("admin/home");
+            return Redirect("admin/History/GetHistory");
         }
-
         [HttpGet]
         public async Task<IActionResult> CreateHistory()
         {
             return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetHistory()
+        {
+            return View(await _service.GetHistory());
         }
     }
 }

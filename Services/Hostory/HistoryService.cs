@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Services.Hostory.Models;
 using Services.Hostory.Repository;
@@ -19,7 +21,15 @@ namespace Services.Hostory
         public async Task CreateHistory(HistoryViewModel model)
         {
             var entity = _mapper.Map<Domain.Models.History>(model);
+            entity.CreateDate = DateTime.Now;
             await _repository.Create(entity);
+        }
+
+
+        public async Task<GetHistoryViewModel> GetHistory()
+        {
+            var model = _mapper.Map<GetHistoryViewModel>(await _repository.Get());
+            return model;
         }
 
     }

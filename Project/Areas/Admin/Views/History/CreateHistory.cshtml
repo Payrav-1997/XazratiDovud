@@ -5,7 +5,7 @@
 </head>
 <body>
 <h3 class="ml-3">Добавление Истории</h3>
-<form class="form" asp-controller="History" asp-action="CreateHistory" method="post">
+<form class="form" enctype="multipart/form-data" href="/Admin/History/CreateHistory" method="post">
     <div class="form-group mt-3 ml-3">
         <label >Заголовок</label>
         <input type="text" class="form-control" name="title" asp-for="Title">
@@ -13,10 +13,6 @@
     <div class="form-group ml-3">
         <label >Описание</label>
         <input type="text" class="form-control" name="description" asp-for="Description">
-    </div>
-    <div class="custom-file mb-4 ml-3">
-        <input type="file" class="custom-file-input" asp-for="HisFile" id="customFile">
-        <label class="custom-file-label" for="customFile">Файл</label>
     </div>
     <input type="submit" name="time" class="btn btn-primary ml-3">
 </form>

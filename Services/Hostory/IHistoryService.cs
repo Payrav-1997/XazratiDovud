@@ -6,5 +6,6 @@ namespace Services.Hostory
     public interface IHistoryService
     {
         public Task CreateHistory(HistoryViewModel model);
+        Task<GetHistoryViewModel> GetHistory();
     }
 }

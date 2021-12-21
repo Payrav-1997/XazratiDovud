@@ -14,7 +14,6 @@ namespace Persistence.Data
     public class DataContext : IdentityDbContext<User, Roles, int>
     {
         public DbSet<Advice> Advices { get; set; }
-        public DbSet<BaseModel> BaseModels { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Complaints> Complaints { get; set; }
         public DbSet<History> Histories { get; set; }
@@ -35,14 +34,21 @@ namespace Persistence.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            //builder.Entity<User>()
-            //    .ToTable("Users");
-            //builder.Entity<IdentityRole>()
-            //    .ToTable("Roles");
-            //builder.Entity<IdentityUserRole<int>>()
-            //    .ToTable("UserRoles");
-            //builder.Entity<IdentityUserToken<int>>()
-            //    .ToTable("UserToken");
+            builder.Entity<User>()
+                .ToTable("Users");
+            builder.Entity<IdentityRole>()
+                .ToTable("Roles");
+            builder.Entity<IdentityUserRole<int>>()
+                .ToTable("UserRoles");
+            builder.Entity<IdentityUserToken<int>>()
+                .ToTable("UserToken");
+        }
+        
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            base.OnConfiguring(optionsBuilder);
+
+            optionsBuilder.EnableSensitiveDataLogging();
         }
     }
 

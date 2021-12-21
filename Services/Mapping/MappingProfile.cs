@@ -13,8 +13,15 @@ namespace Services.Mapping
         {
             this.CreateMap<Domain.Models.History, HistoryViewModel>()
                 .ForMember(x => x.Description, option => option.MapFrom(x => x.Description))
-                .ForMember(x => x.Title, option => option.MapFrom(x => x.Title))
-                .ForMember(x => x.HisFile, option => option.Ignore());
+                .ForMember(x => x.Title, option => option.MapFrom(x => x.Title));
+
+            this.CreateMap<HistoryViewModel,Domain.Models.History>()
+                .ForMember(x => x.Description, option => option.MapFrom(x => x.Description))
+                .ForMember(x => x.Title, option => option.MapFrom(x => x.Title));
+            
+            this.CreateMap<Domain.Models.History , GetHistoryViewModel>()
+                .ForMember(x => x.Description, option => option.MapFrom(x => x.Description))
+                .ForMember(x => x.Title, option => option.MapFrom(x => x.Title));
 
         }
     }
