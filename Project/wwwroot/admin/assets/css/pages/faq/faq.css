@@ -22,7 +22,11 @@ nav .navbar-brand {
   padding: 0 17px; }
 
 .fq-header-wrapper {
-  padding: 0 0;
+  width: 100%;
+  height: 500px;
+  background-position: initial;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-image: url("/images/a3d653c204072a9827b37d3332ca4581.jpg");
    }
   .fq-header-wrapper h1 {

@@ -1,22 +1,31 @@
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Domain.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Persistence.Data;
+using Persistence.Seed;
 
 namespace Project
 {
-    public class Program
+    public static class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            using var scope = host.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<DataContext>();
+            await context.Database.MigrateAsync();
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Roles>>();
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+            await DefaultRoleSeed.AddDefaultRoleAsync(roleManager);
+            await AddDefaultUserSeed.AddDefaultUserAsync(userManager);
+            await host.RunAsync();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

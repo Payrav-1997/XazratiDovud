@@ -27,17 +27,12 @@ namespace Services.Account.Repository
 
 
 
-		public async Task<User> Create(User model, string password)
+		public async Task<IdentityResult> Create(User model, string password)
 		{
 			var result = await this._userManager
 				.CreateAsync(model, password);
 
-			if (!result.Succeeded)
-			{
-				throw new Exception(string.Join(Environment.NewLine, result.Errors.Select(m => m.Description)));
-			}
-
-			return model;
+			return result;
 		}
 
 
@@ -77,5 +72,9 @@ namespace Services.Account.Repository
 			return await this.Update(model);
 		}
 
+		public async Task AddToRoleAsync(User user, string roleName)
+		{
+			await _userManager.AddToRoleAsync(user, roleName);
+		}
 	}
 }

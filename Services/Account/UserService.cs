@@ -6,6 +6,7 @@ using Services.Account.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,11 +16,13 @@ namespace Services.Account
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UsersRepository _userRepository;
+        private readonly UserManager<User> _userManager;
 
-        public UserService(SignInManager<User> signInManager,UsersRepository userRepository)
+        public UserService(SignInManager<User> signInManager,UsersRepository userRepository,UserManager<User> userManager)
         {
             this._signInManager = signInManager;
             this._userRepository = userRepository;
+            _userManager = userManager;
         }
 
         public async Task<User>Create(User model, string password)
@@ -56,10 +59,31 @@ namespace Services.Account
             }
         }
 
-        public async Task<SignInResult>SignIn(LoginViewModel model)
+        public async Task<ClaimsPrincipal>SignIn(LoginViewModel model)
         {
-            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, true);
-            return result;
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user == null) return null;
+            if (user.LockoutEnabled == false)
+                return null;
+            var result = await  this._signInManager.PasswordSignInAsync(user, model.Password, false, true);
+            if (!result.Succeeded) return null;
+            var clims = await _userManager.GetClaimsAsync(user);
+           
+            var userClaims = new List<Claim>()
+            {
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim("MinExperience", 5.ToString()),
+                new Claim(ClaimTypes.Role, "Admin"),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+            };
+            userClaims.AddRange(clims.Select(x=>new Claim(ClaimTypes.Role,x.Value)));
+            var claimsIdentity = new ClaimsIdentity("Claims");
+            claimsIdentity.AddClaims(userClaims);
+
+            var userPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+            return userPrincipal;
         }
 
 
