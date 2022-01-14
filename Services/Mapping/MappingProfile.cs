@@ -13,6 +13,7 @@ namespace Services.Mapping
         {
             this.CreateMap<Domain.Models.History, HistoryViewModel>()
                 .ForMember(x => x.Description, option => option.MapFrom(x => x.Description))
+                .ForMember(x => x.Files, option => option.Ignore())
                 .ForMember(x => x.Title, option => option.MapFrom(x => x.Title));
 
             this.CreateMap<HistoryViewModel,Domain.Models.History>()
@@ -22,6 +23,7 @@ namespace Services.Mapping
             this.CreateMap<Domain.Models.History , GetHistoryViewModel>()
                 .ForMember(x => x.Id, option => option.MapFrom(x => x.Id))
                 .ForMember(x => x.Description, option => option.MapFrom(x => x.Description))
+                .ForMember(x => x.Images, option => option.MapFrom(x => x.HistoryFiles.Select(i=>i.Name)))
                 .ForMember(x => x.Title, option => option.MapFrom(x => x.Title));
 
             this.CreateMap<UpdateHistoryViewModel,Domain.Models.History>()

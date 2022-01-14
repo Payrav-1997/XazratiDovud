@@ -813,6 +813,8 @@
     <_ContentIncludedByDefault Remove="wwwroot\admin\sass\plugins\table\datatable\dt-global_style-dark.scss" />
     <_ContentIncludedByDefault Remove="wwwroot\admin\sass\plugins\table\datatable\dt-global_style.scss" />
     <_ContentIncludedByDefault Remove="wwwroot\admin\sass\plugins\tagInput\tags-input.scss" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\historyImage\0f72d558-dfaf-4fbd-8044-01871dda52b6files" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\historyImage\2b4540ea-a806-4c71-8863-cb5e9c9ae7eafiles" />
   </ItemGroup>
 
   <ItemGroup>

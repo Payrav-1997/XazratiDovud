@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Services.Account;
 using Services.Account.Repository;
+using Services.File.Repository;
 using Services.Hostory;
 using Services.Hostory.Repository;
 using Services.Mail;
@@ -23,6 +24,7 @@ namespace Services
             services.AddScoped<EmailService>();
             services.AddScoped<IHistoryService,HistoryService>();
             services.AddScoped<HistoryRepository>();
+            services.AddScoped<FileRepository>();
 
             return services;
         }

@@ -17,6 +17,7 @@ namespace Persistence.Data
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Complaints> Complaints { get; set; }
         public DbSet<History> Histories { get; set; }
+        public DbSet<HistoryFiles> HistoryFiles { get; set; }
         public DbSet<Qadamgoh> Qadamgohs { get; set; }
         public DbSet<RestZone> RestZones { get; set; }
         public DbSet<RestZoneFiles> RestZoneFiles { get; set; }

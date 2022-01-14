@@ -13,5 +13,6 @@ namespace Domain.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string HisFile { get; set; }
+        public virtual IEnumerable<HistoryFiles> HistoryFiles { get; set; }
     }
 }
